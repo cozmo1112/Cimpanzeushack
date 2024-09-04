@@ -1,0 +1,38 @@
+cimpa.html
+gltf', function(gltf) {
+            const chimpanzee = gltf.scene;
+            chimpanzee.scale.set(0.1, 0.1, 0.1);
+            chimpanzee.position.set(0, -1, -2);
+            scene.add(chimpanzee);
+        });
+
+        // Background and TikTok interface
+        const textureLoader = new THREE.TextureLoader();
+        const bgTexture = textureLoader.load('https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models/2.0/TextureSet/glTF/TextureSet_BaseColor.png');
+        scene.background = bgTexture;
+
+        // Camera Movement
+        camera.position.z = 5;
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = true;
+        controls.enablePan = false;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Window resize handler
+        window.addEventListener('resize', function() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+</body>
+</html>
